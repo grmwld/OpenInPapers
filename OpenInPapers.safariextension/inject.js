@@ -1,15 +1,25 @@
-(function()
+window.addEventListener('keydown', checkKeyDown, false);
+window.addEventListener('keyup', checkKeyUp, false);
+
+function checkKeyDown(event)
 {
-    if (window !== window.top) return;
-    
-    console.log('injected');
-    
-    var handleKeypress = function(e)
+    switch(event.keyCode)
     {
-        console.log("Pressed : " + e.keyCode);
-        if (e.keyCode !== 223) return;
-        safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut", window.location.href);
+		case 17:
+			safari.self.tab.dispatchMessage('ctrlStatusUpdate', true);
+		break;
+		case 80:
+            safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut", true);
+        break;
+        default:
+        // do nothing
     }
-    
-    window.addEventListener("keypress", handleKeypress);
-})();
+}
+
+function checkKeyUp(event)
+{
+	if(event.keyCode == 17)
+	{
+		safari.self.tab.dispatchMessage('ctrlStatusUpdate', false);
+	}
+}
