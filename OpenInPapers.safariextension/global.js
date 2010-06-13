@@ -21,13 +21,21 @@ function validateCommand(event)
     }
 }
 
-// function handleKeypress(e)
-// {
-//     if (e.keyCode !== 223) return;
-//     activeTab = safari.application.BrowserWindow.activeTab;
-//     openURLinPapers(activeTab.url, activeTab.title);
-// }
- 
+function handleMessage(msgEvent)
+{
+    messageName = msgEvent.name;
+    messageData = msgEvent.message;
+
+    console.log(messageName);
+    console.log(messageData);
+    
+    if (messageName == 'openInPapersViaKeyboardShortcut')
+    {
+        activeTab = safari.application.activeBrowserWindow.activeTab;
+        openURLinPapers(activeTab.url, activeTab.title);
+    }
+}
+
 safari.application.addEventListener("command", performCommand, true);
 safari.application.addEventListener("validate", validateCommand, true);
-// window.addEventListener("keypress", handleKeypress);
+safari.application.addEventListener("message", handleMessage, false);
