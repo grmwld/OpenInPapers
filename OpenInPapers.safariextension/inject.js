@@ -3,21 +3,21 @@ window.addEventListener('keyup', checkKeyUp, false);
 
 function checkKeyDown(event)
 {
-    switch(event.keyCode)
+    // <ctrl> key press
+    if (event.keyCode == 17)
     {
-		case 17:
-			safari.self.tab.dispatchMessage('ctrlStatusUpdate', true);
-		break;
-		case 80:
-            safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut", true);
-        break;
-        default:
-        // do nothing
+		safari.self.tab.dispatchMessage('ctrlStatusUpdate', true);
+	}
+	// <p> key press
+	else if(event.keyCode == 80)
+	{
+	    safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut", true);
     }
 }
 
 function checkKeyUp(event)
 {
+    // <ctrl> key release
 	if(event.keyCode == 17)
 	{
 		safari.self.tab.dispatchMessage('ctrlStatusUpdate', false);
