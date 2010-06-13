@@ -1,34 +1,8 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Open in Papers</title>
-<script type="text/javascript" charset="utf-8">
-
-function performCommand(event)
-{
-    if (event.command === "openInPapers")
-    {
-		// Store the URL and the title and sends them to Papers©
-		crntURL = event.target.browserWindow.activeTab.url;
-		crntTit = event.target.browserWindow.activeTab.title;
-		event.target.browserWindow.activeTab.url='papers://url/'+encodeURIComponent(crntURL)+'&title='+encodeURIComponent(crntTit);
-    }
-}
-
-function validateCommand(event)
-{
-    if (event.command === "openInPapers")
-    {
-        // Disable the button if there is no URL loaded in the tab.
-        event.target.disabled = !event.target.browserWindow.activeTab.url;
-    }
-}
- 
-// if event handlers are in the global HTML page,
-// register with application:
-safari.application.addEventListener("command", performCommand, true);
-safari.application.addEventListener("validate", validateCommand, true);
-</script>
+<script type="text/javascript" src="global.js" charset="utf-8"></script>
 </head>
 <body>
 </body>
