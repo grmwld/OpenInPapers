@@ -13,6 +13,10 @@ function checkKeyDown(event)
 	{
 	    safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut", true);
     }
+    else
+    {
+        safari.self.tab.dispatchMessage('ctrlStatusUpdate', false);
+    }
 }
 
 function checkKeyUp(event)
