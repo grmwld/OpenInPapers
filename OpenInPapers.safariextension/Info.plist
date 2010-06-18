@@ -20,9 +20,9 @@
 		<array>
 			<dict>
 				<key>Command</key>
-				<string>openInPapers</string>
+				<string>openInPapersMenu</string>
 				<key>Identifier</key>
-				<string>openInPapers_ctxt</string>
+				<string>openInPapersMenu</string>
 				<key>Title</key>
 				<string>Open page in Papers</string>
 			</dict>
@@ -30,7 +30,7 @@
 				<key>Command</key>
 				<string>openLinkInPapers</string>
 				<key>Identifier</key>
-				<string>openInPapers_lnk_ctx</string>
+				<string>openLinkInPapers</string>
 				<key>Title</key>
 				<string>Open link in Papers</string>
 			</dict>

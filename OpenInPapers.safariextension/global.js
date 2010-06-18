@@ -1,26 +1,31 @@
-safari.application.addEventListener("command", performCommand, true);
-safari.application.addEventListener("validate", validateCommand, true);
+safari.application.addEventListener("command", performCommand, false);
+safari.application.addEventListener("validate", validateCommand, false);
 safari.application.addEventListener("message", handleMessage, false);
 
 
 function performCommand(event)
-{
-    thisTab = safari.application.activeBrowserWindow.activeTab;
-    
+{   
     if (event.command === "openInPapers")
     {
-        title = thisTab.title;
-        if (event.userInfo && event.userInfo.selection)
+        url = event.target.browserWindow.activeTab.url;
+        title = event.target.browserWindow.activeTab.title;
+    }
+    else if (event.command === "openInPapersMenu")
+    {
+        url = event.target.contextMenu.tab.browserWindow.url;
+        title = event.target.contextMenu.tab.browserWindow.title;
+        if (event.userInfo)
         {
             title = event.userInfo.selection;
         }
-        openURLinPapers(thisTab.url, title);
     }
     else if (event.command === "openLinkInPapers")
     {
-        openURLinPapers(event.userInfo.href,
-                        event.userInfo.selection);
+        url = event.userInfo.href;
+        title = event.userInfo.selection;
     }
+    
+    openURLinPapers(url, title);
 }
 
 
@@ -32,20 +37,17 @@ function openURLinPapers(url, title)
 
 function validateCommand(event)
 {
-    if (!safari.application.activeBrowserWindow.activeTab.url)
+    if (event === "openInPapers")
     {
-        event.target.disabled = true;
+        event.target.disabled = !event.target.browserWindow.activeTab.url;
     }
-    else
+    if (event.command === "openInPapersMenu")
     {
-        if (event.command === "openInPapers")
-        {
-            event.target.disabled = event.userInfo.hasLink;
-        }
-        else if (event.command === "openLinkInPapers")
-        {
-            event.target.disabled = !event.userInfo.hasLink;
-        }
+        event.target.disabled = event.userInfo.hasLink;
+    }
+    if (event.command === "openLinkInPapers")
+    {
+        event.target.disabled = !event.userInfo.hasLink;
     }
 }
 

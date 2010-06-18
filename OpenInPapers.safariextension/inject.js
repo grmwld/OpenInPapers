@@ -19,7 +19,7 @@ if (window == window.top)
         selection = event.view.document.getSelection().toString().trim();
         
         userInfo = new Object();
-    
+        
     	// hasLink: does the right-click target have an HREF attribute?
     	userInfo.hasLink = !(typeof event.target.href == "undefined"); 
 
