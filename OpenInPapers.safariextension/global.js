@@ -12,8 +12,8 @@ function performCommand(event)
     }
     else if (event.command === "openInPapersMenu")
     {
-        url = event.target.contextMenu.tab.browserWindow.url;
-        title = event.target.contextMenu.tab.browserWindow.title;
+        url = safari.application.activeBrowserWindow.activeTab.url;
+        title = safari.application.activeBrowserWindow.activeTab.title;
         if (event.userInfo)
         {
             title = event.userInfo.selection;
@@ -31,7 +31,8 @@ function performCommand(event)
 
 function openURLinPapers(url, title)
 {
-    safari.application.activeBrowserWindow.activeTab.url = 'papers://url/'+encodeURIComponent(url)+'&title='+encodeURIComponent(title);
+    papersURL = 'papers://url/' + encodeURIComponent(url) + '&title=' + encodeURIComponent(title);
+    safari.application.activeBrowserWindow.activeTab.url = papersURL;
 }
 
 
@@ -56,7 +57,14 @@ function handleMessage(event)
 {
     if (event.name == 'openInPapersViaKeyboardShortcut')
     {
-        openURLinPapers(safari.application.activeBrowserWindow.activeTab.url,
-                        safari.application.activeBrowserWindow.activeTab.title);
+        url = event.target.browserWindow.activeTab.url;
+        title = event.target.browserWindow.activeTab.title;
+        
+        if (event.message)
+        {
+            title = event.message;
+        }
+        
+        openURLinPapers(url, title);
     }
 }

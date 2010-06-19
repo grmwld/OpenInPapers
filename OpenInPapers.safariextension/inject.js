@@ -9,7 +9,8 @@ if (window == window.top)
     	// <CTRL>+p
     	if (event.ctrlKey && event.keyCode == 80)
     	{
-    	    safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut");
+    	    selection = event.view.document.getSelection().toString().trim();
+    	    safari.self.tab.dispatchMessage("openInPapersViaKeyboardShortcut", selection);
         }
     }
 
