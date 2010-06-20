@@ -38,7 +38,7 @@ function openURLinPapers(url, title)
 
 function validateCommand(event)
 {
-    if (event === "openInPapers")
+    if (event.command === "openInPapers")
     {
         event.target.disabled = !event.target.browserWindow.activeTab.url;
     }
