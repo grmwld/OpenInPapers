@@ -11,9 +11,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.1</string>
+	<string>1.2.3</string>
 	<key>CFBundleVersion</key>
-	<string>5.1</string>
+	<string>5.4</string>
 	<key>Chrome</key>
 	<dict>
 		<key>Context Menu Items</key>
